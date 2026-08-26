@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Anılarımız ❤️</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #06102d;
+            color: white;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           YILDIZLAR
+        ========================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+
+            background-size: 95px 95px, 145px 145px;
+            background-position: 10px 20px, 40px 70px;
+
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        /* =========================
+           ANA SAYFA
+        ========================= */
+
+        .ana-sayfa {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(35, 65, 135, 0.35),
+                    transparent 45%
+                ),
+                #06102d;
+        }
+
+
+        /* AY */
+
+        .ay {
+            width: 90px;
+            height: 90px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            margin-bottom: 55px;
+
+            box-shadow:
+                0 0 20px rgba(255,255,255,0.8),
+                0 0 50px rgba(255,255,255,0.4);
+        }
+
+
+        /* BAŞLIK */
+
+        .ana-sayfa h1 {
+            font-size: 76px;
+            font-weight: bold;
+
+            margin-bottom: 25px;
+
+            letter-spacing: -2px;
+        }
+
+        .kalp {
+            display: inline-block;
+
+            font-size: 70px;
+
+            margin-left: 15px;
+
+            animation: kalpAtisi 1.5s infinite;
+        }
+
+        @keyframes kalpAtisi {
+
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* AÇIKLAMA */
+
+        .ana-sayfa p {
+            max-width: 700px;
+
+            font-size: 21px;
+
+            line-height: 1.7;
+
+            color: #d9e1f5;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* BUTON */
+
+        .buton {
+            border: none;
+
+            background: white;
+            color: #071331;
+
+            padding: 17px 32px;
+
+            border-radius: 50px;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .buton:hover {
+            transform: scale(1.08);
+
+            box-shadow:
+                0 10px 30px rgba(255,255,255,0.2);
+        }
+
+
+        /* =========================
+           ANILAR BÖLÜMÜ
+        ========================= */
+
+        .anilar {
+            min-height: 100vh;
+
+            padding: 100px 7%;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #06102d,
+                    #09173b
+                );
+
+            opacity: 0;
+
+            transform: translateY(50px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+        .anilar.acik {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        .anilar-baslik {
+            text-align: center;
+
+            margin-bottom: 60px;
+        }
+
+        .anilar-baslik h2 {
+            font-size: 48px;
+
+            margin-bottom: 15px;
+        }
+
+        .anilar-baslik p {
+            font-size: 18px;
+
+            color: #c8d1e8;
+        }
+
+
+        /* =========================
+           FOTOĞRAF GALERİSİ
+        ========================= */
+
+        .galeri {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+        }
+
+
+        .kart {
+
+            background: rgba(255,255,255,0.07);
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.25);
+
+            opacity: 0;
+
+            transform: translateY(40px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .kart.acik {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        .kart:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.4);
+        }
+
+
+        .kart img {
+
+            width: 100%;
+
+            height: 430px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* ŞİİR / KISA YAZI */
+
+        .soz {
+
+            text-align: center;
+
+            font-size: 18px;
+
+            font-style: italic;
+
+            line-height: 1.6;
+
+            color: #f1f3fa;
+
+            padding: 25px 20px;
+        }
+
+
+        /* =========================
+           MÜZİK
+        ========================= */
+
+        .muzik-alani {
+
+            text-align: center;
+
+            margin: 70px auto 20px;
+
+            max-width: 500px;
+        }
+
+
+        .muzik-alani p {
+
+            color: #cbd4e9;
+
+            margin-bottom: 18px;
+        }
+
+
+        .muzik-butonu {
+
+            border: none;
+
+            background: #ffffff;
+
+            color: #071331;
+
+            padding: 14px 25px;
+
+            border-radius: 30px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .muzik-butonu:hover {
+
+            transform: scale(1.05);
+        }
+
+
+        audio {
+
+            width: 100%;
+
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           ŞİİR BÖLÜMÜ
+        ========================= */
+
+        .siir-bolumu {
+
+            max-width: 850px;
+
+            margin: 120px auto 30px;
+
+            padding: 55px 40px;
+
+            text-align: center;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+
+                1px solid rgba(255,255,255,0.12);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.25);
+        }
+
+
+        .siir-bolumu h2 {
+
+            font-size: 38px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .siir {
+
+            font-size: 20px;
+
+            line-height: 2;
+
+            color: #e6ebf8;
+
+            font-style: italic;
+        }
+
+
+        .siir-kalp {
+
+            font-size: 30px;
+
+            margin-top: 25px;
+        }
+
+
+        /* =========================
+           ALT YAZI
+        ========================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 60px 20px 40px;
+
+            color: #aeb9d3;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           MOBİL
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .ana-sayfa h1 {
+
+                font-size: 48px;
+
+                letter-spacing: -1px;
+            }
+
+            .kalp {
+
+                font-size: 45px;
+
+                margin-left: 5px;
+            }
+
+            .ay {
+
+                width: 65px;
+
+                height: 65px;
+
+                margin-bottom: 40px;
+            }
+
+            .ana-sayfa p {
+
+                font-size: 17px;
+            }
+
+            .galeri {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .kart img {
+
+                height: 400px;
+            }
+
+            .anilar {
+
+                padding: 70px 20px;
+            }
+
+            .anilar-baslik h2 {
+
+                font-size: 36px;
+            }
+
+            .siir-bolumu {
+
+                margin-top: 80px;
+
+                padding: 40px 22px;
+            }
+
+            .siir-bolumu h2 {
+
+                font-size: 30px;
+            }
+
+            .siir {
+
+                font-size: 17px;
+
+                line-height: 1.9;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ANA SAYFA
+    ========================= -->
+
+    <section class="ana-sayfa">
+
+        <div class="ay"></div>
+
+        <h1>
+            Anılarımız
+            <span class="kalp">❤️</span>
+        </h1>
+
+        <p>
+            Birlikte yaşadığımız güzel anlar,
+            unutmak istemediğimiz küçük hikâyeler
+            ve sadece bize ait bir dünya...
+        </p>
+
+        <button class="buton" id="anilaraBak">
+
+            Anılarımıza Bak ✨
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         ANILAR
+    ========================= -->
+
+    <section class="anilar" id="anilar">
+
+
+        <div class="anilar-baslik">
+
+            <h2>
+                Bizim Anılarımız ❤️
+            </h2>
+
+            <p>
+                Bazı anlar vardır,
+                insanın kalbinde hep aynı yerde kalır.
+            </p>
+
+        </div>
+
+
+
+        <div class="galeri">
+
+
+            <!-- FOTO 1 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto1.jpeg.jpeg"
+                    alt="Anımız 1"
+                >
+
+                <p class="soz">
+                    “Bazı anlar hiç bitmesin...”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 2 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto2.jpeg.jpeg"
+                    alt="Anımız 2"
+                >
+
+                <p class="soz">
+                    “Ne güzel denk geldik hayata.”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 3 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto3.jpeg.jpeg"
+                    alt="Anımız 3"
+                >
+
+                <p class="soz">
+                    “Bir gülüşün bütün günü güzelleştirir.”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 4 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto4.jpeg.jpeg"
+                    alt="Anımız 4"
+                >
+
+                <p class="soz">
+                    “Yan yana olmak, en güzel tesadüf.”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 5 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto5.jpeg.jpeg"
+                    alt="Anımız 5"
+                >
+
+                <p class="soz">
+                    “Bazı insanlar iyi ki vardır.”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 6 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto6.jpeg.jpeg"
+                    alt="Anımız 6"
+                >
+
+                <p class="soz">
+                    “Kalbin güzel olduğu yerde zaman durur.”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 7 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto7.jpeg.jpeg"
+                    alt="Anımız 7"
+                >
+
+                <p class="soz">
+                    “Seninle geçen her an ayrı bir hikâye.”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 8 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto8.jpeg.jpeg"
+                    alt="Anımız 8"
+                >
+
+                <p class="soz">
+                    “Güzel olan her şey biraz da sen.”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 9 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto9.jpeg.jpeg"
+                    alt="Anımız 9"
+                >
+
+                <p class="soz">
+                    “Bazı mutlulukların fotoğrafı olur.”
+                </p>
+
+            </div>
+
+
+
+            <!-- FOTO 10 -->
+
+            <div class="kart">
+
+                <img
+                    src="foto/foto10.jpeg.jpeg"
+                    alt="Anımız 10"
+                >
+
+                <p class="soz">
+                    “Ve bazı anılar sonsuza kadar bizimdir.”
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             MÜZİK
+        ========================= -->
+
+        <div class="muzik-alani">
+
+            <p>
+                Bu sayfaya küçük bir şarkı da eşlik etsin... 🎵
+            </p>
+
+            <button
+                class="muzik-butonu"
+                id="muzikButonu"
+            >
+                🎵 Müziği Başlat
+            </button>
+
+            <audio
+                id="muzik"
+                controls
+                preload="auto"
+            >
+
+                <source
+                    src="muzik.mp3"
+                    type="audio/mpeg"
+                >
+
+                Tarayıcınız ses dosyasını desteklemiyor.
+
+            </audio>
+
+        </div>
+
+
+
+        <!-- =========================
+             ŞİİR
+        ========================= -->
+
+        <div class="siir-bolumu">
+
+            <h2>
+                Sana... ❤️
+            </h2>
+
+
+            <div class="siir">
+
+                <p>
+                    Gözlerindeki gizemli evrende kaybolurum,
+                </p>
+
+                <p>
+                    Kalbimdeki bu sevgi ve aşk tükenmez,
+                </p>
+
+                <p>
+                    Zamanın ötesine geçip hayat gibi akarken,
+                </p>
+
+                <p>
+                    Ne kelimelerim yeter hislerimi anlatmaya,
+                </p>
+
+                <p>
+                    Ne de bu tutkulu hislerin bitmek nedir
+                    bilememek halleri...
+                </p>
+
+            </div>
+
+
+            <div class="siir-kalp">
+                ❤️
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================= -->
+
+        <footer>
+
+            Bizim hikâyemizden küçük bir köşe... ❤️
+
+        </footer>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        const anilaraBak =
+            document.getElementById("anilaraBak");
+
+        const anilar =
+            document.getElementById("anilar");
+
+        const kartlar =
+            document.querySelectorAll(".kart");
+
+        const muzik =
+            document.getElementById("muzik");
+
+        const muzikButonu =
+            document.getElementById("muzikButonu");
+
+
+
+        /* =========================
+           ANILARA BAK BUTONU
+        ========================= */
+
+        anilaraBak.addEventListener("click", function () {
+
+            anilar.classList.add("acik");
+
+
+            /* Kartları sırayla göster */
+
+            kartlar.forEach(function (kart, index) {
+
+                setTimeout(function () {
+
+                    kart.classList.add("acik");
+
+                }, index * 250);
+
+            });
+
+
+            /* Anılar bölümüne yumuşak geçiş */
+
+            setTimeout(function () {
+
+                anilar.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "start"
+
+                });
+
+            }, 100);
+
+
+
+            /* Müziği başlat */
+
+            muzik.currentTime = 0;
+
+            muzik.play()
+                .then(function () {
+
+                    muzikButonu.innerHTML =
+                        "⏸️ Müziği Durdur";
+
+                })
+                .catch(function () {
+
+                    console.log(
+                        "Müzik otomatik başlatılamadı."
+                    );
+
+                });
+
+        });
+
+
+
+        /* =========================
+           MÜZİK BUTONU
+        ========================= */
+
+        muzikButonu.addEventListener(
+            "click",
+            function () {
+
+                if (muzik.paused) {
+
+                    muzik.play()
+                        .then(function () {
+
+                            muzikButonu.innerHTML =
+                                "⏸️ Müziği Durdur";
+
+                        })
+                        .catch(function (error) {
+
+                            console.log(
+                                "Müzik başlatılamadı:",
+                                error
+                            );
+
+                        });
+
+                }
+
+                else {
+
+                    muzik.pause();
+
+                    muzikButonu.innerHTML =
+                        "🎵 Müziği Başlat";
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           MÜZİK BİTİNCE
+        ========================= */
+
+        muzik.addEventListener(
+            "ended",
+            function () {
+
+                muzikButonu.innerHTML =
+                    "🎵 Müziği Başlat";
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
